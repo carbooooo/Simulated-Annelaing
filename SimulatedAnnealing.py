@@ -166,7 +166,7 @@ def scelta_soluzione(delta_energia, temperatura):
             return False
 
     
-MAX_ATTEMPTS = 10000  # Iterazioni massime che può fare il programma
+MAX_ATTEMPTS = 0  # Iterazioni massime che può fare il programma
 TEMPERATURE = 1000# Temperatura
 K = 0.999 # Costante per dimiunuire la temperatura
 
@@ -177,9 +177,9 @@ punti_aula = []
 punti_aula_i = []
 y = []
 x = []
-soglia=10000
+soglia=0
 
-while(MAX_ATTEMPTS>0 and TEMPERATURE>0.0001):
+while(MAX_ATTEMPTS<10000 and TEMPERATURE>0.0001):
 
     aula_ipotetica = [[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0]]
     
@@ -193,15 +193,15 @@ while(MAX_ATTEMPTS>0 and TEMPERATURE>0.0001):
 
     # Aggiungo i dati al grafico
     if(MAX_ATTEMPTS==soglia):
-        soglia-=500
-        x.append(10000-MAX_ATTEMPTS)
+        soglia+=500
+        x.append(MAX_ATTEMPTS)
         y.append(sum(punti_aula))
 
     if(MAX_ATTEMPTS==5000):
         print()
         stampa_aula(aula)
 
-    MAX_ATTEMPTS-=1
+    MAX_ATTEMPTS+=1
     TEMPERATURE*=K
 
 # Inserisco i dati delle coordinate
